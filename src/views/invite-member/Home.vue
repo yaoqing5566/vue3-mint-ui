@@ -1,8 +1,14 @@
 <template>
     <div class="invite-parent-box" :style="{'min-height':$store.state.windowHeight+'px'}">
         <div class="invite-item">
-            <div class="invite-item-box">
-                <div class="ico"><img src="../../../public/images/invite/1.png" width="50"/></div>
+            <div class="invite-item-box" v-if="page==1">
+                <div class="ico">
+                    <img src="images/invite/1.png" width="50"/>
+                    <img :src="'images/invite/1.png'" width="50"/>
+                    <img src="../../../public/images/invite/1.png" width="50"/>
+                    <img :src="STATIC_IMAGES.invite.mon" width="50"/>
+                    <div class="bg-img"></div>
+                </div>
                 <div class="name">王凯凯的爸爸</div>
                 <div class="explain">邀请您一起关注王凯凯的成长</div>
                 <div class="tel">
@@ -15,11 +21,28 @@
                 </div>
                 <div class="but">接受邀请</div>
                 <div class="text"  v-clipboard:copy="inviteCode" v-clipboard:success="onCopy" v-clipboard:error="onError">
-                    您也可以打开孩子通app,选择邀请码进入并输入<br />
-                    邀请码<span>123456</span><br />
-                    <span style="display: inline-block; padding-top: 5px">*点击可复制邀请码</span>
+                    您也可以打开孩子通app,选择邀请码进入并输入邀请码<span>123456</span><br />
+                    <span style="display: inline-block; padding-top: 5px; font-size: 12px">*点击可复制邀请码</span>
                 </div>
             </div>
+
+            <div class="invite-item-box page2" v-if="page==2">
+                <div class="tel">
+                    <input type="password" placeholder="请输入当前密码"/>
+                    <img src="image/icon_eyes 2@2x.png"/>
+                </div>
+                <div class="text" style="padding: 10px 0 0 0; margin: 0px ">
+                    您已成为王凯凯的家人，现在请设置密码，登录孩子app时使用
+                </div>
+                <div class="but" style="margin-top: 60px">确定</div>
+            </div>
+
+            <div class="invite-item-box page3" v-if="page==3">
+                <div class="ico"><img src="../../../public/images/invite/1.png" width="60"/></div>
+                <div class="name">王凯凯的爸爸</div>
+                <div class="explain">您已接受王凯凯爸爸的邀请，成为王凯凯的家人，快下载app一起关照孩子的成长吧！</div>
+            </div>
+
         </div>
         <div class="down-app">下载孩子通app</div>
     </div>
@@ -27,6 +50,7 @@
 
 <script>
     import { Popup } from 'mint-ui';
+    import { STATIC_IMAGES } from '../../utils/const_params.js'
     export default {
         name: 'home',
         components: {
@@ -34,10 +58,15 @@
         },
         data () {
             return {
+                STATIC_IMAGES,
                 sendAuthCode:true,/*布尔值，通过v-show控制显示‘获取按钮’还是‘倒计时’ */
                 auth_time: 0, /*倒计时 计数器*/
-                popupVisible:true,
-                inviteCode:'1asasas111111'
+                page:1,
+                inviteCode:'1asasas111111',
+                info:{
+                    sender:'',
+                    inviteCode:''
+                }
             }
         },
         methods:{
@@ -63,9 +92,11 @@
         },
         created(){
             let that=this;
-            // $_get('/Views/admin/readTopNews.aspx?pageIndex=1&pageSize=10&type=0').then(function (response) {
-            //     that.dataTable=response.data
-            // })
+            this.info.sender=this.$route.query.sender;
+            this.info.inviteCode=this.$route.query.inviteCode;
+            $_get('/2/org/family/invite/h5/page?sender='+that.info.sender+'&inviteCode='+that.info.inviteCode).then(function (response) {
+                that.dataTable=response.data
+            })
         }
     }
 </script>
@@ -73,6 +104,7 @@
     .invite-parent-box{
          position: relative; background: rgba(33,150,243,0.5); display: flex; align-items: center; justify-content: center;
     }
+    .bg-img{ width: 50px; height: 50px;background: url("../../../public/images/invite/1.png") no-repeat 5px center; background-size: 100% 100%; }
     .invite-item{
         width:calc(100% - 40px); padding-bottom: 80px;
         .invite-item-box{
@@ -119,5 +151,16 @@
         }
     }
 
-    .page2{ height: 100%; width: 100%}
+    .invite-item-box.page2{
+        padding: 80px 10px 60px 10px;
+    }
+    .invite-item .tel{
+        margin: 10px 0 10px 0; background: url("../../assets/image/icon_lock2@3x.png") no-repeat 5px center; background-size:20px auto ;
+        img{
+            position: absolute; width: 20px; right: 5px; top: 14px;
+        }
+    }
+    .invite-item .page3 .explain{
+        text-align: left; margin: 15px 33px 40px 33px;
+    }
 </style>
