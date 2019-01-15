@@ -70,7 +70,7 @@ module.exports = {
         https: false,
         proxy: {// 设置代理
             '/': {
-                target: 'http://106.14.180.122:86/',
+                target: 'http://mdev.haizitong.com/',
                 changeOrigin: true,
                 ws: false
             }
