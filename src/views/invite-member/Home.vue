@@ -7,7 +7,9 @@
                     <img :src="'images/invite/1.png'" width="50"/>
                     <img src="../../../public/images/invite/1.png" width="50"/>
                     <img :src="STATIC_IMAGES.invite.mon" width="50"/>
-                    <div class="bg-img"></div>
+                    <div class="bg-img" style="display: inline-block"></div>
+                    <div style="display: inline-block; width: 50px; height: 50px; background-size: 100% 100%; background-image: url('./images/invite/1.png')"></div>
+                    <div style="display: inline-block; width: 50px; height: 50px; background-size: 100% 100%;" :style="{'background-image':'url('+STATIC_IMAGES.invite.mon+')'}"></div>
                 </div>
                 <div class="name">王凯凯的爸爸</div>
                 <div class="explain">邀请您一起关注王凯凯的成长</div>
