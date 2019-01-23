@@ -20,7 +20,6 @@ export function post(url,data){
             type:'POST', //GET
             async:true,    //或false,是否异步
             data:data,
-            timeout:3000,    //超时时间
             dataType:'json',    //返回的数据格式：json/xml/html/script/jsonp/text
             beforeSend:function(xhr){
                 console.log(xhr)
