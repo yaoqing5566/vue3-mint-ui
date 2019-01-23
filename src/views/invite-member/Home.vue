@@ -51,7 +51,7 @@
 </template>
 
 <script>
-    import { Popup } from 'mint-ui';
+    import { Popup,MessageBox  } from 'mint-ui';
     import { STATIC_IMAGES } from '../../utils/const_params.js'
     export default {
         name: 'home',
@@ -93,6 +93,11 @@
             },
         },
         created(){
+            MessageBox.confirm('Are you sure?',11111).then(action => {
+                alert(111)
+            }).catch(cancel=>{
+                alert(2222)
+            });
             let that=this;
             this.info.sender=this.$route.query.sender;
             this.info.inviteCode=this.$route.query.inviteCode;
