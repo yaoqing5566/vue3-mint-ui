@@ -18,7 +18,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            redirect: '/invite'
+            redirect: '/home'
         },
         {
             path: '/invite',
@@ -32,6 +32,35 @@ export default new Router({
                     component: () => import('@/views/invite-member/Home.vue'),
                 },
             ]
+        },
+        {
+            path: '/activity',
+            redirect: '/activity/list',
+            component: Layout,
+            meta: {title: '活动'},
+            children: [
+                {
+                    path: 'list',
+                    name: '校园活动',
+                    component: () => import('@/views/activity/index.vue'),
+                },
+            ]
+        },
+        {
+            path: '/home',
+            meta: {title: 'home'},
+            name: 'home',
+            component: () => import('@/views/home.vue'),
+        },
+        {
+            path: '/404',
+            meta: {title: '404'},
+            name: '404',
+            component: () => import('@/views/404.vue'),
+        },
+        {
+            path: '*',
+            redirect: '/404'
         }
 
     ]

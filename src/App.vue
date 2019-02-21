@@ -3,7 +3,12 @@
     <router-view/>
   </div>
 </template>
+<script>
+    import { Indicator  } from 'mint-ui';
+    export default {
 
+    };
+</script>
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

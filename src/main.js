@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import MintUI from 'mint-ui'
+import MintUI, {Indicator} from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import VueClipboard from 'vue-clipboard2'
 Vue.use(VueClipboard)
@@ -16,5 +16,11 @@ Vue.use(MintUI);
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  watch: {
+      $route(to, from) {
+          Indicator.close();
+          console.log(333)
+      }
+  }
 }).$mount('#app')

@@ -9,20 +9,23 @@ import {
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
+    console.log(111)
     Indicator.open();
-
     // 设置浏览器头部标题
     const browserHeaderTitle = to.name;
     store.commit('SET_TITLE', {
         browserHeaderTitle: browserHeaderTitle
     })
-
+    // 强制把url信息留在微信浏览器
+    setTimeout(function () {
+        window.location = window.location;
+    }, 500);
     next();
-    Indicator.close();
 })
 
 
 router.afterEach(() => {
+    console.log(222)
     Indicator.close();
   setTimeout(() => {
     const browserHeaderTitle = store.state.browserHeaderTitle
