@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import MintUI, {Indicator} from 'mint-ui'
+import MintUI, {Indicator,MessageBox} from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import VueClipboard from 'vue-clipboard2'
 Vue.use(VueClipboard)
@@ -20,6 +20,7 @@ new Vue({
   watch: {
       $route(to, from) {
           Indicator.close();
+          MessageBox.close();
           console.log(333)
       }
   }
