@@ -25,8 +25,9 @@
     };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .page-button-group{
     .dd{padding: 0 0 10px 0}
   }
+
 </style>

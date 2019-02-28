@@ -27,4 +27,5 @@
     }
   }
 }
+.mint-indicator-mask{ z-index: 9998}
 </style>

@@ -44,6 +44,11 @@ export default new Router({
                     name: '校园活动',
                     component: () => import('@/views/activity/index.vue'),
                 },
+                {
+                    path: 'detail',
+                    name: '校园活动详情',
+                    component: () => import('@/views/activity/detail.vue'),
+                }
             ]
         },
         {

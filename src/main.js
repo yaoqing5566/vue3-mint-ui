@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import MintUI, {Indicator,MessageBox} from 'mint-ui'
 import 'mint-ui/lib/style.css'
-import VueClipboard from 'vue-clipboard2'
+import VueClipboard from 'vue-clipboard2' ///复制插件
 Vue.use(VueClipboard)
 import './permission' // permission control
 import {post,get} from './http'

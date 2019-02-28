@@ -7,7 +7,7 @@
         </div>
         <div class="page-infinite-wrapper" ref="wrapper">
             <ul v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="50" class="list-box">
-                <li v-for="item in list">
+                <li v-for="item in list" @click="goDetail(item)">
                     <div class="name">{{item}}棒棒糖制作体验
                         <span class="">new</span>
                         <!--<span class="gray">已报名</span>-->
@@ -48,6 +48,9 @@
 
         },
         methods:{
+            goDetail(){
+                this.$router.push({path:'/activity/detail'})
+            },
             loadMore() {
                 if(!this.isRepeat){
                     return;
@@ -72,6 +75,7 @@
         },
 
         created(){
+
 
         }
     }
