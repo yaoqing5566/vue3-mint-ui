@@ -89,7 +89,7 @@
                 p{
                     text-align: left; margin-bottom: 8px;
                     span{
-                       font-size: 14px;
+                        font-size: 14px;
                         color: #4A4A4A; font-weight: normal; margin-left: 10px;
                     }
                 }
@@ -107,9 +107,9 @@
             }
         }
         .sign-fixed{
-            position: fixed; left: 0px; bottom: 0px; width: 100%; height: 50px; line-height: 50px;font-size: 16px;color: #FFFFFF; font-weight: bold;background: #2196F3; text-align: center;
+            position: fixed; left: 0px; bottom: 0px; width: 100%;  height: 50px; line-height: 50px;font-size: 16px;color: #FFFFFF; font-weight: bold;background: #2196F3; text-align: center;
             span{
-                display: inline-block;
+                display: inline-block; background: url($cssImgPath + "/tj.png") no-repeat 0 center; background-size: 21px 21px; padding-left: 30px;
             }
         }
     }

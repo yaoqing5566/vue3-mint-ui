@@ -111,7 +111,13 @@
     .invite-parent-box{
          position: relative; background: rgba(33,150,243,0.5); display: flex; align-items: center; justify-content: center;
     }
-    .bg-img{ width: 50px; height: 50px;background: url("../../../public/images/invite/1.png") no-repeat 5px center; background-size: 100% 100%; }
+
+    .bg-img {
+        width: 50px;
+        height: 50px;
+        background: url($cssImgPath +"/invite/1.png") no-repeat 5px center;
+        background-size: 100% 100%;
+    }
     .invite-item{
         width:calc(100% - 40px); padding-bottom: 80px;
         .invite-item-box{
