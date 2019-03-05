@@ -1,13 +1,13 @@
 <template>
     <div class="activity">
         <div class="top-nav">
-            <a :class="{'active':classType==1}" @click="changeClassType(1)">小班</a>
+            <a :class="{'active':classType==1}" @click="changeClassType(1)">小班{{list.length}}</a>
             <a :class="{'active':classType==2}" @click="changeClassType(2)">中班</a>
             <a :class="{'active':classType==3}" @click="changeClassType(3)">大班</a>
         </div>
         <div class="page-infinite-wrapper" ref="wrapper">
             <mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
-                <ul class="list-box" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+                <ul class="list-box" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="1">
                     <li v-for="(item,index) in list" @click="goDetail(item)">
                         <div class="name">{{index+1}},{{item.news_title}}
                             <span class="">new</span>
@@ -166,7 +166,13 @@
             },
             changeClassType(type){
                 this.list=[];
-
+                this.init=true;
+                this.classType=type;
+                this.pages={
+                    index:1,
+                        size:5
+                };
+                this.loadMore();
             }
         },
 
