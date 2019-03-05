@@ -7,7 +7,12 @@
       <div class="dd">
         <mt-button size="large" type="primary" @click="go('/activity')">列表</mt-button>
       </div>
-
+      <div class="dd">
+        <mt-button size="large" type="primary" @click="go('/activity/pullDown2')">pullDown2-修改过</mt-button>
+      </div>
+      <div class="dd">
+        <mt-button size="large" type="primary" @click="go('/activity/pullDown')">pullDown</mt-button>
+      </div>
     </div>
 
 
