@@ -46,12 +46,12 @@ export default new Router({
                 },
                 {
                     path: 'pullDown',
-                    name: '校园活动',
+                    name: '校园活动1',
                     component: () => import('@/views/activity/pullDown.vue'),
                 },
                 {
                     path: 'pullDown2',
-                    name: '校园活动',
+                    name: '校园活动2',
                     component: () => import('@/views/activity/pullDown2.vue'),
                 },
                 {

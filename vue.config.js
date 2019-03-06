@@ -1,8 +1,19 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+
+
+let baseUrl = "./";
+let outputDir="dist/build";
+switch (process.env.VUE_APP_TITLE) {
+    case 'test':
+        baseUrl="www.baidu.com";
+        outputDir="dist/test";
+        break
+}
+
 module.exports = {
     // 基本路径
-    baseUrl: './',
-    outputDir: 'dist',
+    baseUrl: baseUrl,
+    outputDir:outputDir,
     filenameHashing: false,
     lintOnSave: false,
     runtimeCompiler: false,
@@ -25,8 +36,8 @@ module.exports = {
                 // sourcemap不包含列信息
                 config => config.devtool('cheap-source-map')
             )
-            // 非开发环境
-            .when(process.env.NODE_ENV !== 'development', config => {
+            // build环境
+            .when(process.env.NODE_ENV === 'production', config => {
                 config.optimization
                     .minimizer([
                         new UglifyJsPlugin({
@@ -42,6 +53,15 @@ module.exports = {
                             }
                         })
                     ])
+
+                if(process.env.VUE_APP_TITLE=='test'){
+
+                }
+
+            })
+            // test
+            .when(process.env.NODE_ENV === 'test', config => {
+
             })
     },
     configureWebpack: () => {

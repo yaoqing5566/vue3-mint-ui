@@ -57,7 +57,7 @@
         .list-box{
             position: relative; height: 100%;
             li{
-                text-align: left; padding: 20px; border-bottom: 4px solid #F6F6F6; position: relative;
+                text-align: left; padding: 20px; border-bottom: 4px solid #F6F6F6; position: relative; background: #fff;
                 &::after{
                     content: ''; position: absolute; height: 1px; width: 100%; left: 0px; bottom: 0px; background: rgba(0,0,0,0.12);
                 }
