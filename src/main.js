@@ -12,6 +12,17 @@ Vue.config.productionTip = false
 global.$_post=post;
 global.$_get=get;
 
+let options={
+    fullscreenEl:true, //关闭全屏按钮
+    escKey: true,
+    tapToClose:true
+}
+import preview from 'vue-photo-preview'
+import 'vue-photo-preview/dist/skin.css'
+Vue.use(preview,options)
+
+
+
 Vue.use(MintUI);
 new Vue({
   router,

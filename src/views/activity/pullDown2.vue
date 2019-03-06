@@ -1,5 +1,7 @@
 <template>
     <div class="activity">
+
+
         <div class="top-nav">
             <a :class="{'active':classType==1}" @click="changeClassType(1)">小班{{list.length}}</a>
             <a :class="{'active':classType==2}" @click="changeClassType(2)">中班</a>
@@ -8,14 +10,16 @@
         <div class="page-infinite-wrapper" ref="wrapper">
             <mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
                 <ul class="list-box" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="1">
-                    <li v-for="(item,index) in list" @click="goDetail(item)">
+                    <li v-for="(item,index) in list">
                         <div class="name">{{index+1}},{{item.news_title}}
                             <span class="">new</span>
                             <!--<span class="gray">已报名</span>-->
                         </div>
                         <div class="time">活动时间<span>周一 10:15 - 周二11:00</span></div>
                         <div class="subtext">巧虎内容丰富，形式互动，有利于引发孩子的兴趣，激发无限潜能，培养良好的习惯，是陪伴孩子成长的好伙伴。</div>
-                        <div class="img"></div>
+                        <div class="img" :style="{'background-image':'url(http://47.101.54.147/images/upload/file201812240250421411.png)'}">
+                            <img  width="100%" src="http://47.101.54.147/images/upload/file201812240250421411.png" style="opacity: 0"  :preview="'1'" :preview-text="item.news_title" />
+                        </div>
                         <div class="line"></div>
                     </li>
                 </ul>
@@ -81,7 +85,7 @@
                     -webkit-line-clamp:2; max-height: 41px; overflow: hidden;
                 }
                 .img{
-                    height: 0px; padding-bottom: 50.714%; margin-top: 6px;  background:#e6e6e6 no-repeat center 0px; background-size: cover;
+                    height: 0px; padding-bottom: 50.714%; margin-top: 6px;  background:#e6e6e6 no-repeat center 0px; background-size: cover; overflow: hidden;
                 }
 
             }
@@ -111,6 +115,7 @@
         computed:{
 
         },
+
         methods: {
             refreshTop(){
                 let _this=this;
@@ -158,7 +163,7 @@
                                 _this.bottomStatus="没有更多数据了...";
 
                             }
-
+                            _this.$previewRefresh()
                             console.log(_this.list)
                             Indicator.close();
                         },1000)
@@ -170,10 +175,12 @@
             changeClassType(type){
                 this.list=[];
                 this.init=true;
+                this.isRepeat=true;
+                this.bottomStatus="";
                 this.classType=type;
                 this.pages={
                     index:1,
-                        size:5
+                    size:10
                 };
                 this.loadMore();
             }
@@ -185,8 +192,8 @@
 
         },
 
-        mounted() {
+        mounted(){
 
-        }
+        },
     };
 </script>
