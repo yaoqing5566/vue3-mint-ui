@@ -23,13 +23,13 @@
                 <div slot="top" class="mint-loadmore-top">
                     <span v-show="topStatus !== 'loading'" :class="{ 'is-rotate': topStatus === 'drop' }">松开刷新</span>
                     <span v-show="topStatus === 'loading'">
-                    正在刷新
+                    正在刷新...
                     </span>
                 </div>
 
 
-                <div slot="bottom" class="mint-loadmore-bottom" style="margin: 0; " v-if="bottomStatus === 'loading'">
-                    <span >正在刷新</span>
+                <div slot="bottom" class="bottom-loading" v-if="bottomStatus">
+                    <span >{{bottomStatus}}</span>
                 </div>
 
             </mt-loadmore>
@@ -59,6 +59,7 @@
                 }
                 &:last-child{
                     border: none;
+                    &::after{display: none}
                 }
                 .name{
                     font-size: 16px;font-weight: bold; position: relative;
@@ -103,7 +104,7 @@
                 init:true,
                 pages:{
                     index:1,
-                    size:5
+                    size:10
                 }
             };
         },
@@ -138,7 +139,7 @@
                     return;
                 }
                 if(!this.init){
-                    this.bottomStatus="loading";
+                    this.bottomStatus="正在刷新...";
                 }
                 Indicator.open();
                 this.isRepeat=false;
@@ -152,10 +153,12 @@
                             _this.list=_this.list.concat(daArr);
                             _this.isRepeat=true;
                             _this.init=false;
-                            if(data.data.list.length<5){
+                            if(data.data.list.length<10){
                                 _this.isRepeat=false;
+                                _this.bottomStatus="没有更多数据了...";
+
                             }
-                            _this.bottomStatus="";
+
                             console.log(_this.list)
                             Indicator.close();
                         },1000)

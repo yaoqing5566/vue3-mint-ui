@@ -13,6 +13,7 @@ img{border: 0px}
     background: #2196F3;
     border-radius: 50px; line-height: 50px; color: #fff; font-size: 16px; position: fixed; width:calc(100% - 40px); left: 20px ; bottom: 20px;
 }
+.bottom-loading{ background-color: #ececec; text-align: center; color: gray; line-height: 30px}
 @media (max-width: 750px){
 
 
