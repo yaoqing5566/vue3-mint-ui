@@ -21,7 +21,6 @@ if(process.env.NODE_ENV === 'production'){
 
 
 
-
 module.exports = {
     // 基本路径
     baseUrl: baseUrl,
