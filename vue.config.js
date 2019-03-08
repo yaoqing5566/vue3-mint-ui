@@ -1,6 +1,5 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-
 let baseUrl = "./";
 let outputDir="dist/build";
 let pagesTitle="";
