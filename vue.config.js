@@ -3,12 +3,25 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 let baseUrl = "./";
 let outputDir="dist/build";
-switch (process.env.VUE_APP_TITLE) {
-    case 'test':
-        baseUrl="www.baidu.com";
-        outputDir="dist/test";
-        break
+let pagesTitle="";
+if(process.env.NODE_ENV === 'development'){//开发环境
+    pagesTitle="test/";
 }
+if(process.env.NODE_ENV === 'production'){
+    switch (process.env.VUE_APP_TITLE) {
+        case 'test':  //测试环境
+            outputDir="dist/test";
+            pagesTitle="test/";
+            break
+        case 'production':  //正式环境
+            outputDir="dist/build";
+            break
+    }
+
+}
+
+
+
 
 module.exports = {
     // 基本路径
@@ -17,6 +30,13 @@ module.exports = {
     filenameHashing: false,
     lintOnSave: false,
     runtimeCompiler: false,
+    pages: {
+        index: {
+            entry: './src/main.js',
+            template: './public/index.html',
+            title: pagesTitle,
+        }
+    },
     chainWebpack: config => {
         /**
          * 删除懒加载模块的 prefetch preload，降低带宽压力
@@ -54,13 +74,10 @@ module.exports = {
                         })
                     ])
 
-                if(process.env.VUE_APP_TITLE=='test'){
-
-                }
 
             })
             // test
-            .when(process.env.NODE_ENV === 'test', config => {
+            .when(process.env.NODE_ENV === 'test/', config => {
 
             })
     },
@@ -84,8 +101,12 @@ module.exports = {
         modules: false
     },
     parallel: require('os').cpus().length > 1,
+
     //dll: false,
     pwa: {},
+    // chainWebpack(config) {
+    //     console.log(config.plugins.get('html'));
+    // },
 // webpack-dev-server 相关配置
     devServer: {
         open: false,
@@ -100,10 +121,14 @@ module.exports = {
             }
         },
         before: app => {
+
         }
     },
 // 第三方插件配置
     pluginOptions: {
-        // ...
+
     }
 }
+
+
+
