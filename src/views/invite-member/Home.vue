@@ -136,7 +136,7 @@
         }
         .tel{
             border-bottom: 1px solid  rgba(0,0,0,0.12); text-align: left; margin: 20px 0 0 0; line-height: 40px;
-            background: url("../../../public/images/invite/icon_phone@3x.png") no-repeat 6px center; background-size:22px auto ; padding-left: 40px; position: relative;
+            background: url($cssImgPath +"/invite/icon_phone@3x.png") no-repeat 6px center; background-size:22px auto ; padding-left: 40px; position: relative;
             input{
                 border: 1px; width: 100%; line-height: 40px; font-size: 12px;color: rgba(0,0,0,0.54);
             }
