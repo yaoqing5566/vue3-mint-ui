@@ -103,6 +103,9 @@
 
         },
         methods: {
+            goDetail(){
+                this.$router.push({path:'/activity/detail'})
+            },
             refreshTop(){
                 let _this=this;
                 $_get("/Views/web/getNew.aspx?pageIndex=1&pageSize="+_this.pages.size+"&type=1&name=").then(function (res) {

@@ -29,6 +29,9 @@ export default new Router({
                 {
                     path: 'member',
                     name: '邀请家人',
+                    meta: {
+                        keepAlive: false // 不需要缓存
+                    },
                     component: () => import('@/views/invite-member/Home.vue'),
                 },
             ]
@@ -42,21 +45,33 @@ export default new Router({
                 {
                     path: 'list',
                     name: '校园活动',
+                    meta: {
+                        keepAlive: false // 不需要缓存
+                    },
                     component: () => import('@/views/activity/index.vue'),
                 },
                 {
                     path: 'pullDown',
                     name: '校园活动1',
+                    meta: {
+                        keepAlive: false // 不需要缓存
+                    },
                     component: () => import('@/views/activity/pullDown.vue'),
                 },
                 {
                     path: 'pullDown2',
                     name: '校园活动2',
+                    meta: {
+                        keepAlive: true // 要缓存
+                    },
                     component: () => import('@/views/activity/pullDown2.vue'),
                 },
                 {
                     path: 'detail',
                     name: '校园活动详情',
+                    meta: {
+                        keepAlive: false // 不需要缓存
+                    },
                     component: () => import('@/views/activity/detail.vue'),
                 }
             ]

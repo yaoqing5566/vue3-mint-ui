@@ -11,7 +11,7 @@
             <mt-loadmore :top-method="loadTop" @top-status-change="handleTopChange" ref="loadmore">
                 <ul class="list-box" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="1">
                     <li v-for="(item,index) in list">
-                        <div class="name">{{index+1}},{{item.news_title}}
+                        <div class="name" @click="goDetail(item)">{{index+1}},{{item.news_title}}
                             <span class="">new</span>
                             <!--<span class="gray">已报名</span>-->
                         </div>
@@ -105,7 +105,6 @@
                 isRepeat:true,
                 loading: false,
                 bottomStatus:'',
-                init:true,
                 pages:{
                     index:1,
                     size:10
@@ -117,6 +116,9 @@
         },
 
         methods: {
+            goDetail(){
+                this.$router.push({path:'/activity/detail'})
+            },
             refreshTop(){
                 let _this=this;
                 $_get("/Views/web/getNew.aspx?pageIndex=1&pageSize="+_this.pages.size+"&type=1&name=").then(function (res) {
@@ -143,9 +145,7 @@
                 if(!this.isRepeat){
                     return;
                 }
-                if(!this.init){
-                    this.bottomStatus="正在刷新...";
-                }
+
                 Indicator.open();
                 this.isRepeat=false;
                 let _this=this;
@@ -154,10 +154,12 @@
                     if(data.code==1){
                         setTimeout(()=>{
                             _this.pages.index++;
+                            if(_this.pages.index>1){
+                                _this.bottomStatus="正在刷新...";
+                            }
                             let daArr=data.data.list;
                             _this.list=_this.list.concat(daArr);
                             _this.isRepeat=true;
-                            _this.init=false;
                             if(data.data.list.length<10){
                                 _this.isRepeat=false;
                                 _this.bottomStatus="没有更多数据了...";
@@ -173,8 +175,8 @@
                 })
             },
             changeClassType(type){
+                window.scroll(0,0)
                 this.list=[];
-                this.init=true;
                 this.isRepeat=true;
                 this.bottomStatus="";
                 this.classType=type;
@@ -185,15 +187,22 @@
                 this.loadMore();
             }
         },
-
+        watch:{
+            $route(to, from) {
+                if(to.path=='/activity/detail'){
+                    this.isRepeat=false;
+                }
+                if(to.path=='/activity/pullDown2'){
+                    this.isRepeat=true;
+                }
+            }
+        },
         created() {
 
 
-
         },
 
-        mounted(){
 
-        },
+
     };
 </script>

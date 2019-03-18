@@ -1,5 +1,5 @@
 <template>
-    <div class="activity-detail">
+    <div class="activity-detail" >
         <div class="item1">
             <div class="a1">
                 <div class="img"></div>
@@ -30,6 +30,9 @@
             <div class="name">活动材料</div>
             <div class="introduce">巧虎内容丰富，形式互动，有利于引发孩子的兴趣，激发无限潜能，培养良好的习惯，是陪伴孩子成长的好伙伴。</div>
         </div>
+
+
+
         <div class="sign-fixed"><span>我要报名</span></div>
     </div>
 
@@ -59,7 +62,6 @@
         methods:{
 
         },
-
         created(){
 
 
