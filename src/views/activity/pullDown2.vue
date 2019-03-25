@@ -15,8 +15,8 @@
                             <span class="">new</span>
                             <!--<span class="gray">已报名</span>-->
                         </div>
-                        <div class="time">活动时间<span>周一 10:15 - 周二11:00</span></div>
-                        <div class="subtext">巧虎内容丰富，形式互动，有利于引发孩子的兴趣，激发无限潜能，培养良好的习惯，是陪伴孩子成长的好伙伴。</div>
+                        <div class="time" @click="goDetail(item)">活动时间<span>周一 10:15 - 周二11:00</span></div>
+                        <div class="subtext" @click="goDetail(item)">巧虎内容丰富，形式互动，有利于引发孩子的兴趣，激发无限潜能，培养良好的习惯，是陪伴孩子成长的好伙伴。</div>
                         <div class="img" :style="{'background-image':'url(http://47.101.54.147/images/upload/file201812240250421411.png)'}">
                             <img  width="100%" src="http://47.101.54.147/images/upload/file201812240250421411.png" style="opacity: 0"  :preview="'1'" :preview-text="item.news_title" />
                         </div>
