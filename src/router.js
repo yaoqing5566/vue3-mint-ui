@@ -77,6 +77,22 @@ export default new Router({
             ]
         },
         {
+            path: '/swiper',
+            redirect: '/swiper/virtual',
+            component: Layout,
+            meta: {title: 'swiper'},
+            children: [
+                {
+                    path: 'virtual',
+                    name: 'virtual',
+                    meta: {
+                        keepAlive: false // 不需要缓存
+                    },
+                    component: () => import('@/views/swiper/virtualSlides.vue'),
+                }
+            ]
+        },
+        {
             path: '/home',
             meta: {title: 'home'},
             name: 'home',
