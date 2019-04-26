@@ -1,8 +1,9 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-
+const path = require('path')
 let baseUrl = "./";
 let outputDir="dist/build";
 let pagesTitle="";
+console.log("env: " + process.env.NODE_ENV, "title: " + process.env.VUE_APP_TITLE)
 if(process.env.NODE_ENV === 'development'){//开发环境
     pagesTitle="test/";
 }
@@ -13,7 +14,13 @@ if(process.env.NODE_ENV === 'production'){
             pagesTitle="test/";
             break
         case 'production':  //正式环境
+            outputDir="dist/production";
+            break
+        case 'build':  //build
             outputDir="dist/build";
+            break
+        case 'haizitong':  //haizitong打包到别的文件夹
+            outputDir=path.resolve("D:\\bulid\\web");
             break
     }
 
