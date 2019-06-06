@@ -93,6 +93,22 @@ export default new Router({
             ]
         },
         {
+            path: '/watch',
+            redirect: '/watch/watch',
+            component: Layout,
+            meta: {title: 'watch'},
+            children: [
+                {
+                    path: 'watch',
+                    name: 'watch',
+                    meta: {
+                        keepAlive: false // 不需要缓存
+                    },
+                    component: () => import('@/views/activity/warch.vue'),
+                }
+            ]
+        },
+        {
             path: '/home',
             meta: {title: 'home'},
             name: 'home',

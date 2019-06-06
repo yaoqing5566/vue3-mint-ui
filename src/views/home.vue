@@ -16,6 +16,9 @@
       <div class="dd">
         <mt-button size="large" type="primary" @click="go('/swiper/virtual')">swiper</mt-button>
       </div>
+      <div class="dd">
+        <mt-button size="large" type="primary" @click="go('/swiper/watch')">watch监听</mt-button>
+      </div>
     </div>
 
 
