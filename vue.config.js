@@ -1,13 +1,23 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const  CompressionPlugin=require('compression-webpack-plugin')
 const path = require('path')
 let baseUrl = "./";
 let outputDir="dist/build";
 let pagesTitle="";
 console.log("env: " + process.env.NODE_ENV, "title: " + process.env.VUE_APP_TITLE)
+
+let proxyUrl="http://47.101.54.147/";
 if(process.env.NODE_ENV === 'development'){//开发环境
     pagesTitle="test/";
+    switch (process.env.VUE_APP_TITLE) {
+        case 'server2':
+            proxyUrl="http://47.101.54.1471/";
+            break
+    }
+
 }
-if(process.env.NODE_ENV === 'production'){
+
+if(process.env.NODE_ENV === 'production'){//打包环境
     switch (process.env.VUE_APP_TITLE) {
         case 'test':  //测试环境
             outputDir="dist/test";
@@ -87,6 +97,14 @@ module.exports = {
             })
     },
     configureWebpack: () => {
+        //gzip压缩 需要的时候打开进行配置
+        // return{
+        //     plugins:[new CompressionPlugin({
+        //         test:/\.js$|\.html$|\.css/,
+        //         threshold:10240,
+        //         deleteOriginalAssets:false
+        //     })]
+        // }
     },
     //vueLoader: {},
     productionSourceMap: true,
@@ -113,6 +131,7 @@ module.exports = {
     //     console.log(config.plugins.get('html'));
     // },
 // webpack-dev-server 相关配置
+
     devServer: {
         open: false,
         host: '0.0.0.0',
@@ -120,7 +139,7 @@ module.exports = {
         https: false,
         proxy: {// 设置代理
             '/': {
-                target: 'http://47.101.54.147/',
+                target: proxyUrl,
                 changeOrigin: true,
                 ws: false
             }
