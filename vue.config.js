@@ -6,12 +6,12 @@ let outputDir="dist/build";
 let pagesTitle="";
 console.log("env: " + process.env.NODE_ENV, "title: " + process.env.VUE_APP_TITLE)
 
-let proxyUrl="http://47.101.54.147/";
+let proxyUrl="http://47.101.54.147/"; //开发环境代理ip
 if(process.env.NODE_ENV === 'development'){//开发环境
     pagesTitle="test/";
     switch (process.env.VUE_APP_TITLE) {
         case 'server2':
-            proxyUrl="http://47.101.54.1471/";
+            proxyUrl="http://47.101.54.1471/"; //线上环境代理ip
             break
     }
 
