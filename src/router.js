@@ -109,6 +109,22 @@ export default new Router({
             ]
         },
         {
+            path: '/address',
+            redirect: '/address/address',
+            component: Layout,
+            meta: {title: 'address'},
+            children: [
+                {
+                    path: 'address',
+                    name: 'address',
+                    meta: {
+                        keepAlive: false // 不需要缓存
+                    },
+                    component: () => import('@/views/address/address.vue'),
+                }
+            ]
+        },
+        {
             path: '/home',
             meta: {title: 'home'},
             name: 'home',

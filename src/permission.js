@@ -9,7 +9,7 @@ import {
 
 //使用钩子函数对路由进行权限跳转
 router.beforeEach((to, from, next) => {
-    console.log(111)
+    console.log('start',111)
     Indicator.open();
     // 设置浏览器头部标题
     const browserHeaderTitle = to.name;
@@ -25,7 +25,7 @@ router.beforeEach((to, from, next) => {
 
 
 router.afterEach(() => {
-    console.log(222)
+    console.log('start',222)
     Indicator.close();
   setTimeout(() => {
     const browserHeaderTitle = store.state.browserHeaderTitle

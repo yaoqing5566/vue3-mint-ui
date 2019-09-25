@@ -4,10 +4,19 @@
   </div>
 </template>
 <script>
-    import { Indicator  } from 'mint-ui';
-    export default {
+    import {Toast} from 'mint-ui';
 
-    };
+    export default {
+        components: {
+            Toast
+
+        },
+        created() {
+            window.alert=function (msg) {
+                Toast(msg)
+            }
+        }
+    }
 </script>
 <style lang="scss">
 #app {

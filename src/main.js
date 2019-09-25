@@ -43,7 +43,7 @@ new Vue({
       $route(to, from) {
           Indicator.close();
           MessageBox.close();
-          console.log(333)
+          console.log('start',333)
       }
   }
 }).$mount('#app')
