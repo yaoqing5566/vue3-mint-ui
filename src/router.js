@@ -125,6 +125,22 @@ export default new Router({
             ]
         },
         {
+            path: '/mint',
+            redirect: '/mint/index-list',
+            component: Layout,
+            meta: {title: 'index-list'},
+            children: [
+                {
+                    path: 'index-list',
+                    name: 'index-list',
+                    meta: {
+                        keepAlive: false // 不需要缓存
+                    },
+                    component: () => import('@/views/mint-ui/index-list.vue'),
+                }
+            ]
+        },
+        {
             path: '/home',
             meta: {title: 'home'},
             name: 'home',
