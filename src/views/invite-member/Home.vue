@@ -3,6 +3,8 @@
         <div class="invite-item">
             <div class="invite-item-box" v-if="page==1">
                 <div class="ico">
+                    <img :src="require('@/assets/image/2.jpg')" width="50"/>
+                    <div class="img-bg" style="display: inline-block; width: 50px; height: 50px; background-size: 100% 100%;"></div>
                     <img src="images/invite/1.png" width="50"/>
                     <img :src="'images/invite/1.png'" width="50"/>
                     <img src="../../../public/images/invite/1.png" width="50"/>
@@ -64,7 +66,7 @@
                 sendAuthCode:true,/*布尔值，通过v-show控制显示‘获取按钮’还是‘倒计时’ */
                 auth_time: 0, /*倒计时 计数器*/
                 page:1,
-                inviteCode:'1asasas111111',
+                inviteCode:'复制的内容哦',
                 info:{
                     sender:'',
                     inviteCode:''
@@ -107,7 +109,10 @@
         }
     }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+    .img-bg{
+        background: url("~@/assets/image/2.jpg");
+    }
     .invite-parent-box{
          position: relative; background: rgba(33,150,243,0.5); display: flex; align-items: center; justify-content: center;
     }

@@ -5,7 +5,7 @@
                 <div class="picker-toolbar" style="border-bottom: solid 1px #eaeaea;"><span
                         class="mint-datetime-action mint-datetime-cancel" @click="hidePicker">取消</span> <span
                         class="mint-datetime-action mint-datetime-confirm" @click="saveAddress">确定</span></div>
-                <mt-picker :slots="slots" value-key="value" @change="onValuesChange"></mt-picker>
+                <mt-picker :slots="slots"  :visible-item-count="5"  value-key="value" @change="onValuesChange"></mt-picker>
             </section>
         </mt-popup>
     </div>
