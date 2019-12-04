@@ -1,5 +1,5 @@
 import router from './router'
-import store from './store'
+import store from './store/index'
 import { Indicator } from 'mint-ui';
 import {
   setTitle
