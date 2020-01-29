@@ -1,4 +1,4 @@
-console.log("我的是测试环境的js")
+
 //IOS注册
 function setupWebViewJavascriptBridge(callback) {
     if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
@@ -15,6 +15,7 @@ function setupWebViewJavascriptBridge(callback) {
 //native回调H5方法
 function applyCallback(callbackName, params) {
     if (callbackMap.hasOwnProperty(callbackName)) {
+        console.log(callbackMap)
         callbackMap[callbackName](params);
     }
 }
@@ -27,17 +28,33 @@ function applyCallback(callbackName, params) {
  * @param ignoreType 0:不可忽略, 1:android, 2:ios, 3:android&ios
  */
 
+
+
+
+
 var callbackMap = {};
 var callbackSeq = 0;
 function callNative(api, version, param, callback) {
     try {
         var callbackId = null;
         if (callback) {
-
             callbackId = "callback" + (callbackSeq++);
             callbackMap[callbackId] = callback;
         }
-        HztUtil.callFun(api, version, param, callbackId);
+        if(typeof HztUtil!='undefined') {
+            HztUtil.callFun(api, version, param, callbackId);
+        } else if(typeof HztFLUtil!='undefined') {
+            HztFLUtil.postMessage(JSON.stringify(
+                {
+                    api: api,
+                    version: version,
+                    param: param,
+                    callbackId: callbackId
+                }
+            ));
+        } else {
+            console.log("can't find native bridge!!!");
+        }
     } catch (e) {
         console.warn(e);
     }
@@ -54,7 +71,7 @@ function callNative(api, version, param, callback) {
 var HztUtil = {
     callFun: function (api, version, param, callbackId) {
         var test = {
-            authInfo: "Basic NWJhMWY3ZTYzY2ZmYTYxN2YxYTQwMjI2OjcxMzgxMzMyNmU5YmNiNDJiYzYwYWJkOTA3NTVlNDAz",
+            authInfo: "Basic NWQ1ZGY1YzhiYjRlN2IxYThiMWE1NWJjOmU4ZmNlNjE5OGY0MzA0YTc4ZDRkOTc5MGMxZjE3MmJh",
             headerVersion: "x86_64;12.1;5.8.6;dev;1.1"
         };
         applyCallback(callbackId, test);
@@ -98,10 +115,13 @@ function request(url, callback, method, userData) {
             callback(result);
         },
         error: function (e, status) {
-            console.log(e,status)
             if (e.status == 401) {
                 callNative('tokenExpire', 1, '');
             }
+            var ob=JSON.parse(e.responseText)
+            document.write('<div style="text-align: center; padding: 50px 0 0 0; color: grey">'+ob.msg+'</div>')
+            alert(ob.msg)
+
         }
     };
 
