@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from './store/index'
 import MintUI, {Indicator,MessageBox} from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import VueClipboard from 'vue-clipboard2' ///复制插件

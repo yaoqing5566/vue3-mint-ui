@@ -41,7 +41,8 @@
     </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" >
+    .web-body .pswp{z-index: 100000}
     .activity{
         .page-infinite-wrapper{ margin-top: 50px;  }
         position: relative; height: 100%; font-size: 14px;
