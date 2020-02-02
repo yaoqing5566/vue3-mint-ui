@@ -42,7 +42,7 @@ module.exports = {
     // 基本路径
     baseUrl: baseUrl,
     outputDir:outputDir,
-    filenameHashing: false,
+    filenameHashing: true,
     lintOnSave: false,
     runtimeCompiler: false,
     pages: {
